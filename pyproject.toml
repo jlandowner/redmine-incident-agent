@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "redmine-incident-agent"
+version = "0.1.0"
+description = "Pydantic AI based Redmine incident triage agent"
+requires-python = ">=3.12"
+dependencies = [
+  "httpx>=0.28,<1",
+  "pydantic>=2.10,<3",
+  "pydantic-ai-slim[openai]>=1.0,<2",
+  "python-dotenv>=1,<2",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10", "pytest-asyncio>=0.25,<2"]
+
+[project.scripts]
+redmine-incident-agent = "redmine_incident_agent.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/redmine_incident_agent"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+asyncio_mode = "auto"

@@ -1,0 +1,26 @@
+h1. AgentInstruction
+
+このProjectに登録された監視Alert Issueを一次トリアージしてください。
+
+本番環境へ直接アクセスすることはできません。
+Redmineに存在する情報だけを根拠として判断してください。
+
+h2. Runbook
+
+TODO: 実際のAlert登録メッセージ仕様が確定した後、以下に事象別Runbookを記載する。
+
+例:
+
+h3. FailedCreatePodSandBox / IP allocation failure
+
+* 過去Issueから同一/類似メッセージを検索する。
+* 過去IssueでVPC CNI/IP枯渇が原因だった場合でも、今回も同一原因とは断定しない。
+* 以下がRedmine上に存在しなければNext Actionとして確認を依頼する。
+** 対象SubnetのAvailableIpAddressCount
+** aws-node/ipamdログのIP割当エラー有無
+** 対象NodeのENI/IP割当状況
+
+h2. Alert Input Specification
+
+TODO: 監視システムからRedmineへ登録されるSubject/Descriptionの実仕様をここに記載する。
+入力形式が不完全または揺れている場合もあるため、Agentは正規化を前提に処理する。
